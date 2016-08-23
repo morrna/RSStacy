@@ -8,7 +8,7 @@ class FeedCorpus(ttx.TextCorpus):
     """
     def from_feed(self, url):
         fdict = fp.parse(url)
-        
+
         for entry in fdict.entries:
             # Each entry may have multiple pieces of content. Here they're just concatenated.
             body = ""
@@ -17,7 +17,7 @@ class FeedCorpus(ttx.TextCorpus):
 
             # Preprocessing
             body = pre.preprocess_text(body, no_urls=True, no_emails=True, no_phone_numbers=True)
-            
+
             metadata = {'title': entry.title,
                     'author': entry.author,
                     'date_updated': entry.updated,
