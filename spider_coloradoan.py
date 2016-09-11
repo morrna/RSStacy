@@ -5,5 +5,5 @@ class ColoradoanSpider(scrapy.Spider):
 	start_urls = ['http://www.coloradoan.com/news']
 
 	def parse(self, response):
-		for href in response.css('.hgpm-link a::attr(href)'):
+		for href in response.css('.hgpm-link a a::attr(href)'):
 			yield href
