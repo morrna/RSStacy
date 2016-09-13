@@ -1,3 +1,5 @@
 __pycache__/*
 *.pyc
 .*.sw[a-z]
+.scrapy/*
+test_*.json
