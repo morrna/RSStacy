@@ -2,13 +2,13 @@ import scrapy as scr
 import scrapy.spiders as spi
 import scrapy.linkextractors as lx
 
-class ColoradoanSpider(spi.CrawlSpider):
+class ColoradoanSpider(scr.Spider):
         name = 'Coloradoan'
         allowed_domains = ['coloradoan.com']
         start_urls = ['http://www.coloradoan.com/news']
         
-        rules = [ spi.Rule(lx.LinkExtractor(allow='story/news'))
-                ]
+        good_links = lx.LinkExtractor(allow='story/news')
 
-        def parse_item(self, response):
-            scr.inspect_response(response, self)
+        def parse(self, response):
+            return dict(enumerate([ [link.url, link.text] \
+                    for link in self.good_links.extract_links(response) ] ))
